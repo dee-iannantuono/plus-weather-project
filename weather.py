@@ -5,6 +5,8 @@ DEGREE_SYBMOL = u"\N{DEGREE SIGN}C"
 
 
 def format_temperature(temp):
+    temp_str = "{:.1f}°C".format(temp)
+    return temp_str
     """Takes a temperature and returns it in string format with the degrees
         and celcius symbols.
 
@@ -13,40 +15,51 @@ def format_temperature(temp):
     Returns:
         A string contain the temperature and "degrees celcius."
     """
-    return f"{temp}{DEGREE_SYBMOL}"
+    # return f"{temp}{DEGREE_SYBMOL}"
+    #NEED TO FIGURE OUT HOW TO RUN THIS TEST? 
 
 
-def convert_date(iso_string):
-    """Converts and ISO formatted date into a human readable format.
+def convert_date(date):
+    date_obj = datetime.fromisoformat(date)
+    formatted_date = date_obj.strftime ("%A %d %B %Y")
+    print(formatted_date)
+    return formatted_date
+    # """Converts and ISO formatted date into a human readable format.
 
-    Args:
-        iso_string: An ISO date string..
-    Returns:
-        A date formatted like: Weekday Date Month Year e.g. Tuesday 06 July 2021
-    """
-    pass
-
-
-def convert_f_to_c(temp_in_farenheit):
-    """Converts an temperature from farenheit to celcius.
-
-    Args:
-        temp_in_farenheit: float representing a temperature.
-    Returns:
-        A float representing a temperature in degrees celcius, rounded to 1dp.
-    """
-    pass
+    # Args:
+    #     iso_string: An ISO date string..
+    # Returns:
+    #     A date formatted like: Weekday Date Month Year e.g. Tuesday 06 July 2021
+    # """
+    #WORKS BUT DATES SHOW IN THE WRONG ORDER
 
 
-def calculate_mean(weather_data):
-    """Calculates the mean value from a list of numbers.
+def convert_f_to_c(temp_in_f):
+    celsius = (temp_in_f - 32) * 5/9
+    print (celsius)
+    return round(celsius, 1)
+    # """Converts an temperature from farenheit to celcius.
 
-    Args:
-        weather_data: a list of numbers.
-    Returns:
-        A float representing the mean value.
-    """
-    pass
+    # Args:
+    #     temp_in_farenheit: float representing a temperature.
+    # Returns:
+    #     A float representing a temperature in degrees celcius, rounded to 1dp.
+    # """
+    #ON THE RIGHT TRACK BUT NEEDS FIXING 
+
+
+def calculate_mean(temperatures):
+    temperatures = [int(num) if isinstance(num, str) else num for num in temperatures]
+    total = sum(temperatures)
+    mean = total/len(temperatures)
+    return mean 
+    # """Calculates the mean value from a list of numbers.
+    # Args:
+    #     weather_data: a list of numbers.
+    # Returns:
+    #     A float representing the mean value.
+    # """
+    #MAY NEED TO FIX THIS ONE NOT 100% BUT ON THE RIGHT TRACK 
 
 
 def load_data_from_csv(csv_file):
@@ -57,6 +70,7 @@ def load_data_from_csv(csv_file):
     Returns:
         A list of lists, where each sublist is a (non-empty) line in the csv file.
     """
+    # with open(file="example_one.csv") as csv_file:
     pass
 
 
