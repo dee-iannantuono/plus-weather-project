@@ -138,7 +138,8 @@ def generate_summary(data):
   The lowest temperature will be {format_temperature(lowest_temp_c)}, and will occur on {formatted_dates[lowest_temp_index]}.
   The highest temperature will be {format_temperature(highest_temp_c)}, and will occur on {formatted_dates[highest_temp_index]}.
   The average low this week is {format_temperature(average_low_c)}.
-  The average high this week is {format_temperature(average_high_c)}."""
+  The average high this week is {format_temperature(average_high_c)}.
+"""
     return summary
     """Outputs a summary for the given weather data.
     Args:
@@ -146,33 +147,22 @@ def generate_summary(data):
     Returns:
         A string containing the summary information.
     """
-    # KEEP GETTING ERRORS ON THIS 
-# example_two = [
-#         ["2020-06-19T07:00:00+08:00", 47, 46],
-#         ["2020-06-20T07:00:00+08:00", 51, 67],
-#         ["2020-06-21T07:00:00+08:00", 58, 72],
-#         ["2020-06-22T07:00:00+08:00", 59, 71],
-#         ["2020-06-23T07:00:00+08:00", 52, 71],
-#         ["2020-06-24T07:00:00+08:00", 52, 67],
-#         ["2020-06-25T07:00:00+08:00", 48, 66],
-#         ["2020-06-26T07:00:00+08:00", 53, 66]]
-# print(generate_summary(example_two))
-
 
 def generate_daily_summary(weather_data):
     summary = ""
-    for day_data in weather_data:
-        date = convert_date(day_data[0])
-        min_temp = convert_f_to_c(day_data[1])
-        max_temp = convert_f_to_c(day_data[2])
-    summary = f"""---- {date} ----
-    Minimum Temperature: {format_temperature(min_temp)}
-    Maximum Temperature: {format_temperature(max_temp)}"""
-    return summary
-    """Outputs a daily summary for the given weather data.
-    Args:
-        weather_data: A list of lists, where each sublist represents a day of weather data.
-    Returns:
-        A string containing the summary information.
-    """
+    for weather_data in weather_data:
+        date = convert_date(weather_data[0])
+        min_temp = convert_f_to_c(weather_data[1])
+        max_temp = convert_f_to_c(weather_data[2])
+        summary += f"""---- {date} ----
+  Minimum Temperature: {format_temperature(min_temp)}
+  Maximum Temperature: {format_temperature(max_temp)}
 
+"""
+    return summary
+# """Outputs a daily summary for the given weather data.
+#     Args:
+#         weather_data: A list of lists, where each sublist represents a day of weather data.
+#     Returns:
+#         A string containing the summary information.
+#     """
